@@ -1,13 +1,40 @@
+import React from 'react';
 import Card from './components/Card'
 import Header from './components/Header'
-import Draw from './components/Drawer'
+import Drawer from './components/Drawer'
+
+
+
+
 
 function App() {
-  return <div className="wrapper сlear">
+
+  const[items, setItems] =React.useState([])
+  const[cartItems, setCartItems] =React.useState([])
+  const [cartOpened, setCartOpened] = React.useState(false);
+
+  React.useEffect(()=>{
+    fetch('http://localhost:3001/sneakers').then(
+      (res)=> {
+      return res.json();
+    }).then
+    (
+      (json)=>{
+        setItems(json);
+    });  
+  }, []);
+
+  const onAddToCart = (obj)=>{
+    setCartItems((prev) =>[ ...prev, obj]);
+  };
+  
+  return (
+  
+  <div className="wrapper clear">
     
-    <Draw/>
+    {cartOpened && <Drawer items={cartItems} onClose={()=>{setCartOpened(false)}}/> }
     
-    <Header/>
+    <Header onClickCart={()=> setCartOpened(true)}   />
     
     <div className="content p-40">
       <div className="d-flex align-center justify-between mb-40">
@@ -18,45 +45,24 @@ function App() {
         </div>
       </div>
       
-
-      <div className="d-flex">
-        
-        <Card/>
-        <div className="card">
-          <img width={270} height={350} src="img/2.jpg" alt="Comp"/>
-          <h5>Красивый комплект ляяляляdadadada dadadadadadadadadadada</h5>
-          <div className="d-flex justify-between align-center">
-            <div className="d-flex flex-column">
-              <span>Цена:</span>
-              <b>12 999 руб.</b>
-            </div>
-            <button className="button"> 
-            <img width={11} height={11} src="img/Group 91.svg" alt="Plus"/>
-            </button>
-          </div>
-        </div>
-      
-        <div className="card">
-          <img width={270} height={350} src="img/4.jpg" alt="Comp"/>
-          <h5>Красивый комплект ляяляляdadadada dadadadadadadadadadada</h5>
-          <div className="d-flex justify-between align-center">
-            <div className="d-flex flex-column">
-              <span>Цена:</span>
-              <b>12 999 руб.</b>
-            </div>
-            <button className="button"> 
-            <img width={11} height={11} src="img/Group 91.svg" alt="Plus"/>
-            </button>
-          </div>
-        </div>
-
-        
+      <div className="d-flex flex-wrap">
+  
+      {items.map((items) => (
+           <Card 
+           title={items.title}
+           price={items.price} 
+           imgUrl={items.imgUrl}
+           onFavorite={()=> console.log('Нажали сердечко')}
+           onPlus={(obj)=> onAddToCart(obj)}
+          />
+        ))}
       </div>
        
       
       
     </div>
     </div>
+  )
 };
 
 export default App;

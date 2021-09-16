@@ -1,32 +1,25 @@
-function Drawer(){
+function Drawer({onClose, items = []}){
     return(
-        <div style={{display:'none'}} className="overlay">
+        <div className="overlay">
             <div className="drawer ">
-            <h2 className="d-flex justify-between mb-30 mt-30">Корзина<img className="removeBtn cu-p" src="/img/plus.svg"alt="plus" /></h2>
-
+            <h2 className="d-flex justify-between mb-30 mt-30">
+                Корзина<img onClick={onClose} className="removeBtn cu-p" src="/img/plus.svg"alt="Close" /></h2>
             <div className="items ">
 
-            <div className="cartItem d-flex align-center mb-20">
-                
-                <div style={{ backgroundImage: 'url(/img/1.jpg)'}} className="cartItemImg"></div>
-                <div className="mr-20 flex">
-                <p className="mb-5">Красивый комплект ляяляляdadadada</p>
-                <b>12 999 руб.</b>
-                </div>
-                <img className="removeBtn" src="/img/plus.svg"alt="plus" />
-                
-            </div>
+                {items.map((obj)=> (
+                <div className="cartItem d-flex align-center mb-20">
+                    <div
+                     style={{ backgroundImage: 'url(${obj.imgUrl})' }}
+                      className="cartItemImg"></div>
 
-            <div className="cartItem d-flex align-center mb-20">
-                
-                <div style={{ backgroundImage: 'url(/img/1.jpg)'}} className="cartItemImg"></div>
-                <div className="mr-20 flex">
-                <p className="mb-5">Красивый комплект ляяляляdadadada</p>
-                <b>12 999 руб.</b>
-                </div>
+                    <div className="mr-20 flex">
+                        <p className="mb-5">{obj.title}</p>
+                        <b>{obj.price}</b>
+                    </div>
                 <img className="removeBtn" src="/img/plus.svg"alt="plus" />
                 
-            </div>
+            </div>))}
+           
 
             </div>
         
