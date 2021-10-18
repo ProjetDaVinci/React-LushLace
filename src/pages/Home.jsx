@@ -1,7 +1,7 @@
 import Card from '../components/Card'
+import React from 'react';
 
 function Home({items,
-    cartItems,
     searchValue,
     setSearchValue,
     onChangeSearchInput,
@@ -9,6 +9,8 @@ function Home({items,
     onAddToCart,
     isLoading
   })  {
+
+    
 
       const renderItems = () =>{
         const filtredItems = items.filter((items) => items.title
@@ -20,8 +22,7 @@ function Home({items,
                 key={index}
                 onFavorite={(obj)=>onAddToFavorite(obj)}//(obj)=> console.log('Добавили в закладки'
                 onPlus={(obj)=> onAddToCart(obj)}
-                added={cartItems.some(obj => Number(obj.id) == Number(items.id))}
-                loading={isLoading}
+                loading={isLoading} 
                 {...items}
             />
           ))}

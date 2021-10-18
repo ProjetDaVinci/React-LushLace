@@ -43,13 +43,50 @@
       "imgUrl": "/img/4.jpg"
     }
   ],
-  "Cart": [
+  "Cart": [],
+  "Favorites": [
     {
       "id": "1",
+      "parentId": "1",
       "title": " Красный Комплект 3 полоски",
       "imgUrl": "/img/1.jpg",
       "price": 12999
     }
   ],
-  "Favorites": []
+  "orders": [
+    {
+      "items": [
+        {
+          "id": "1",
+          "title": " Красный Комплект 3 полоски",
+          "imgUrl": "/img/1.jpg",
+          "price": 12999
+        },
+        {
+          "id": "2",
+          "title": " Чёрный Комплект 3 полоски",
+          "imgUrl": "/img/2.jpg",
+          "price": 18999
+        }
+      ],
+      "id": 1
+    },
+    {
+      "items": [
+        {
+          "id": "1",
+          "title": " Красный Комплект 3 полоски",
+          "imgUrl": "/img/1.jpg",
+          "price": 12999
+        },
+        {
+          "id": "2",
+          "title": " Чёрный Комплект 3 полоски",
+          "imgUrl": "/img/2.jpg",
+          "price": 18999
+        }
+      ],
+      "id": 2
+    }
+  ]
 }
