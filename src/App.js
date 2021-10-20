@@ -115,7 +115,7 @@ function App() {
     
     
     <Header onClickCart={()=> setCartOpened(true)} />
-    <Route path="/" exact>
+    <Route path="" component={Home} exact>
       <Home 
       items={items} 
       cartItems={cartItems}
@@ -128,11 +128,11 @@ function App() {
       />
     </Route>
     
-    <Route path="/Favorites" exact>
+    <Route path="React-LushLace/" component={Favorites} exact>
       <Favorites />
     </Route>
 
-    <Route path="/orders" exact>
+    <Route path="React-LushLace/" component={Orders} exact>
       <Orders />
     </Route>
     
